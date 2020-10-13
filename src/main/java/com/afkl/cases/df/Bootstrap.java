@@ -2,6 +2,8 @@ package com.afkl.cases.df;
 
 import java.io.IOException;
 
+import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -28,6 +30,19 @@ public class Bootstrap {
 	@Bean
 	public RestTemplate restTemplate() {
 		return new OAuth2RestTemplate(oAuthDetails());
+	}
+	
+	/*
+	 * ModelMapper Bean used to convert Object to DTO and DTO to Object
+	 */
+	@Bean
+	public ModelMapper modelMapper() {
+
+		ModelMapper modelMapper = new ModelMapper();
+
+		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.LOOSE);
+
+		return modelMapper;
 	}
 
 }

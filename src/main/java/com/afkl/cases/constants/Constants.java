@@ -13,4 +13,6 @@ public class Constants {
 	public static final String TRAVEL_FARE_URL = "travel_fare_url";
 
 	public static final String SINGLE_AIRPORT_URL = "single_airport_url";
+	
+	public static final String START_TIME = "StartTime";
 }

@@ -78,6 +78,8 @@ public class TravelServiceImpl implements TravelService {
 		CompletableFuture<String> fareDetailsString = fetchDetails(travelFareUriBuilder.toUri().toString());
 		CompletableFuture<String> originDetailsString = fetchDetails(originUriBuilder.toUri().toString());
 		CompletableFuture<String> destinationDetailsString = fetchDetails(destinationUriBuilder.toUri().toString());
+		// Wait until they are all done
+	    CompletableFuture.allOf(fareDetailsString,originDetailsString,destinationDetailsString).join();
 
 		try {
 

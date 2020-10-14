@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,10 +40,10 @@ public class TravelController {
 	}
 
 	@GetMapping(Constants.FARES)
-	public ResponseEntity<FaresDto> getTravelFare(@PathVariable String origin, @PathVariable String destination,
-			@RequestParam Optional<String> currency) {
+	public ResponseEntity<FaresDto> getTravelFare(@Valid @PathVariable String origin,
+			@Valid @PathVariable String destination, @RequestParam Optional<String> currency) {
 
-		FaresDto faresDto = travelService.calculateFareDetails(origin, destination);
+		FaresDto faresDto = travelService.calculateFareDetails(origin, destination, currency);
 
 		return (Objects.nonNull(faresDto)) ? ResponseEntity.ok(faresDto) : ResponseEntity.notFound().build();
 

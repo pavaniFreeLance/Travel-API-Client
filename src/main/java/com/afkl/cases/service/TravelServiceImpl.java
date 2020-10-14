@@ -1,6 +1,7 @@
 package com.afkl.cases.service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 import org.slf4j.Logger;
@@ -59,10 +60,11 @@ public class TravelServiceImpl implements TravelService {
 	}
 
 	@Override
-	public FaresDto calculateFareDetails(String origin, String destination) {
-
+	public FaresDto calculateFareDetails(String origin, String destination,Optional<String> currency) {
+		String currencyParam = currency.isPresent()? currency.get() :null;
 		UriComponents travelFareUriBuilder = UriComponentsBuilder
 				.fromHttpUrl(env.getProperty(Constants.TRAVEL_FARE_URL)).path("/{origin}").path("/{destination}")
+				.queryParam("currency",currencyParam)
 				.buildAndExpand(origin, destination);
 
 		UriComponents originUriBuilder = UriComponentsBuilder.fromHttpUrl(env.getProperty(Constants.SINGLE_AIRPORT_URL))

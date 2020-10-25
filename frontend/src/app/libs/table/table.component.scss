@@ -1,0 +1,12 @@
+:host {
+    width: 850px;
+
+    .default-text {
+        color: var(--color-text-primary);
+        margin-top: 24px;
+        align-self: start;
+        font-size: 18px;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        font-style: italic;
+    }
+}

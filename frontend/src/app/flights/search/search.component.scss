@@ -1,0 +1,28 @@
+:host {
+  > .container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    .select-location-container {
+      display: flex;
+      gap: 50px;
+
+      .align-end {
+        align-self: flex-end;
+      } 
+
+      // Override
+      p-button {
+          &.disabled {
+            pointer-events: none;
+          }
+      }
+    }
+
+    .show-fares-container {
+      align-self: flex-start;
+      display: flex;
+    }
+  }
+}

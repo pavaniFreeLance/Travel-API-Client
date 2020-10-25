@@ -91,11 +91,11 @@ public class TravelServiceImpl implements TravelService {
 			throws InterruptedException {
 		logger.debug("getAirportDetails starts for airportCode " + airportCode);
 
-		UriComponents originUriBuilder = UriComponentsBuilder.fromHttpUrl(env.getProperty(Constants.SINGLE_AIRPORT_URL))
-				.path("/{origin}").queryParams(params).buildAndExpand(airportCode);
+		UriComponents UriBuilder = UriComponentsBuilder.fromHttpUrl(env.getProperty(Constants.SINGLE_AIRPORT_URL))
+				.path("/{key}").queryParams(params).buildAndExpand(airportCode);
 
 		return CompletableFuture
-				.completedFuture(restTemplate.getForObject(originUriBuilder.toString(), AirportsDto.class));
+				.completedFuture(restTemplate.getForObject(UriBuilder.toString(), AirportsDto.class));
 	}
 
 }

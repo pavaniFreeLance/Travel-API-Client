@@ -65,8 +65,8 @@ public class TravelServiceImpl implements TravelService {
 			return airtportsList;
 
 		} catch (HttpStatusCodeException e) {		
-			logger.error("Airports List not available exception ", e);
-			throw new ResultNotFoundException(" Airports List not available ");
+			logger.error("Airports List not available ", e);
+			throw new ResultNotFoundException("Airports List not available");
 		}
 
 	}

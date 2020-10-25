@@ -11,9 +11,7 @@ import java.nio.file.Paths;
 import java.util.List;
 
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.mockito.Matchers;
 import org.mockito.Mockito;
@@ -62,9 +60,6 @@ public class TravelControllerIntegrationTest {
 
 	TestRestTemplate testRestTemplate = new TestRestTemplate();
 
-	@Rule
-	public ExpectedException thrown = ExpectedException.none();
-
 	@Before
 	public void setup() {
 
@@ -83,6 +78,20 @@ public class TravelControllerIntegrationTest {
 		List<AirportsDto> airtportsList = objectMapper.readValue(result, new TypeReference<List<AirportsDto>>() {
 		});
 		assertEquals(25, airtportsList.size());
+
+	}
+
+	@Test
+	public void testGetAirports_ResultNotFound() throws Exception {
+
+		Mockito.when(restTemplate.getForObject(Matchers.anyString(), Matchers.eq(String.class)))
+				.thenThrow(new HttpClientErrorException(HttpStatus.NOT_FOUND));
+		ErrorResponse error = testRestTemplate.getForObject("http://localhost:" + port + "/travel/airports",
+				ErrorResponse.class);
+
+		assertNotNull(error);
+		assertEquals(HttpStatus.NOT_FOUND.value(), error.getStatus());
+		assertEquals("Result Not Found", error.getMessage());
 
 	}
 

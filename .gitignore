@@ -1,35 +1,36 @@
-# Maven generated files
-**/target
-**/build
-**/.gradle
-/MANIFEST.MF
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
 
-# Compiled files
-*.class
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
 
-# Packages
-*.jar
-!gradle/wrapper/gradle-wrapper.jar
-*.zip
-
-# Eclipse files
-*.classpath
-*.project
-*.settings
-.checkstyle
-/bin
-
-# IntelliJ IDEA files
-.idea/
+### IntelliJ IDEA ###
+.idea
+*.iws
 *.iml
 *.ipr
-*.log
-/.metadata
-/Servers
 
-# Frontend files
-/**/node_modules
-/**/.gulp-cache
-/**/jspm_packages
-/**/dist
-/devnet-core-ui/src/client/public
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+
+##logs
+/logs

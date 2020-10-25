@@ -1,9 +1,7 @@
 package com.afkl.cases.controller;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.concurrent.Callable;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
@@ -11,11 +9,9 @@ import java.util.concurrent.ExecutionException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +25,6 @@ import com.afkl.cases.exceptions.ResultNotFoundException;
 import com.afkl.cases.service.TravelService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
-@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping(value = "/travel", produces = "application/json")
 public class TravelController {
@@ -67,7 +62,7 @@ public class TravelController {
 			CompletableFuture<AirportsDto> originAirportDto = travelService.getAirportDetails(origin, params);
 
 			CompletableFuture<AirportsDto> destinationAirportDto = travelService.getAirportDetails(destination, params);
-		
+
 			try {
 				// Wait until they are all done
 				CompletableFuture.allOf(faresDto, originAirportDto, destinationAirportDto).join();
@@ -76,7 +71,7 @@ public class TravelController {
 				faresDto.get().setDestinationName(destinationAirportDto.get().getName());
 				return ResponseEntity.ok(faresDto.get());
 			} catch (CompletionException ex) {
-					logger.error("Completion exception ");
+				logger.error("Completion exception ");
 				if (ex.getCause() instanceof HttpStatusCodeException) {
 					throw new ResultNotFoundException("Invalid origin or destination given");
 				} else {

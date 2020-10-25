@@ -1,11 +1,7 @@
 package com.afkl.cases.constants;
 
 public class Constants {
-
-	//public static final String AIRPORTS = "/airports";
-
-	//public static final String FARES = "/fares/{origin}/{destination}";
-
+	
 	public static final String LOCATIONS = "locations";
 
 	public static final String AIRPORTS_URL = "airports_url";

@@ -1,0 +1,25 @@
+
+server:
+   port: 8085
+
+# Spring Security configuration
+security:
+  oauth2:
+    client:
+      grantType: client_credentials
+      clientId: travel-api-client
+      clientSecret: psw
+      accessTokenUri: http://localhost:8081/oauth/token
+
+airports_url: http://localhost:8081/airports
+
+travel_fare_url: http://localhost:8081/fares
+
+single_airport_url: http://localhost:8081/airports
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+

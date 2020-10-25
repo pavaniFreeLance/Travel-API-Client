@@ -1,0 +1,16 @@
+<p-dialog
+  header="Error Message!"
+  [(visible)]="showDialog"
+  [style]="{ width: '50vw' }"
+  [baseZIndex]="10000"
+  [modal]="true"
+>
+  <p>{{errorMessage}}</p>
+  <ng-template pTemplate="footer">
+    <p-button
+      (click)="close()"
+      label="close"
+      styleClass="p-button-text"
+    ></p-button>
+  </ng-template>
+</p-dialog>
